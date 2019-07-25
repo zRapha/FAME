@@ -209,8 +209,8 @@ class Population:
                 json_send = f.send_local_sandbox(mod_sample) 
                 
                 # Get VT detections for original sample to save in db
-                #sample_report = f.get_report_VT(mutation['hash_sample'], rescan=False)
-                sample_report = {'positives': 49, 'total': 66} # Debug mode (without VT/offline)
+                sample_report = f.get_report_VT(mutation['hash_sample'], rescan=False)
+                #sample_report = {'positives': 49, 'total': 66} # Debug mode (without VT/offline)
                 
                 # Collect info to writeCSV function 
                 mod_sample_hash = f.hash_files(mod_sample)                
