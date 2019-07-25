@@ -1,0 +1,10 @@
+# Requirements file to install all packages needed for AxMED: 
+# This file may be used within a Python environment using:
+# $ pip install -r requirements.txt
+
+numpy==1.13.3
+pandas==0.25.0
+requests==2.18.4
+scikit_learn==0.18.2
+scipy==0.19.1
+https://github.com/lief-project/LIEF/releases/download/0.7.0/linux_lief-0.7.0_py3.6.tar.gz
