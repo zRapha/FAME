@@ -9,7 +9,7 @@ AxMED was designed to understand how automatically injected perturbations to Win
 
 Download the ARMED/AIMED repository: 
 ```
-$ git clone https://github.com/zRapha/AxMED 
+$ git clone https://github.com/zRapha/AIMED 
 ```
 Create a virtual environment & activate it: 
 ```
