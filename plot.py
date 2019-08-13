@@ -197,6 +197,6 @@ def ratio_functional(CSV, CSV_fail, sample):
 
 
 if __name__ == '__main__':
-    det_vs_pert('db/database.csv', 'original/vb_1346') # keylogger
-    scatter_plot('db/database.csv', 'original/vb_1346')
-    ratio_functional('db/database.csv', 'db/fail_database.csv', 'original/vb_1346')
+    det_vs_pert('db/database.csv', 'original/keylogger')
+    scatter_plot('db/database.csv', 'original/keylogger')
+    ratio_functional('db/database.csv', 'db/fail_database.csv', 'original/keylogger')
