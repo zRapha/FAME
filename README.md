@@ -43,13 +43,13 @@ $ cd /etc/default/inetsim-1.2.8/
 $ sudo ./inetsim 
 ```
 
-Note that retrieving the detection rate for a malware sample from an online agreggator will no longer be functional. Therefore, manual checking for the detection rate is required. 
+Note that automatically retrieving the detection rate for a malware sample from an online agreggator will no longer be functional unless adjusted or checked manually.
 
 ## Part 5: How to run AxMED
 
 1. Activate Cuckoo Python venv: 
 ```
-$ source ~/Dokumente/virtualenvironments/cuckoo-env/bin/activate
+$ source ~/Documents/venvs/cuckoo-env/bin/activate
 ```
 
 2. Run Mongo DB for webserver: 
