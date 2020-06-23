@@ -1,6 +1,6 @@
 import os
 import csv
-import lief #  pip install https://github.com/lief-project/LIEF/releases/download/0.7.0/linux_lief-0.7.0_py3.6.tar.gz
+import lief # pip install lief==0.9.0
 import random
 import zipfile
 import requests
@@ -20,6 +20,8 @@ mod_path = "samples/mod/"
 zipped_path = "samples/zipped/"
 unzipped_path = "samples/unzipped/"
 evasion_path = "samples/successful/"
+
+LIEF_EXCEPTIONS = (lief.bad_file, lief.bad_format)
 
 def time_me(start_time):
 	'''
@@ -81,16 +83,16 @@ def url_ok(url):
 	
 	r = requests.get(url, timeout=10)
 	return r.status_code
+	
 
-def create_random_actions(actions, n):
+def create_random_actions(size_of_actions, n):
 	'''
 		Return vector filled with random perturbations
 	'''
 	
 	random.seed() 
-	random_actions = [0]*n
-	for i in range(n): 
-		random_actions[i] = random.randrange(len(actions))
+	random_actions = random.sample(range(size_of_actions), n)
+	print("Actions:", random_actions)
 	return random_actions
 	
 def actions_vector(actions_dict): 
@@ -109,6 +111,12 @@ def build_bytes(input_bytes, pert_number):
 			input_bytes: input malware in bytes
 			pert_number: number of perturbations injected to keep track in name
 	'''
+	try: 
+		new_binary = lief.PE.parse(list(input_bytes))
+
+	except LIEF_EXCEPTIONS as e:
+		print("No PE file created as LIEF returned:", str(e))
+		return None
 	
 	new_binary = lief.PE.parse(input_bytes)
 	builder = lief.PE.Builder(new_binary)

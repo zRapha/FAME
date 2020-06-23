@@ -3,7 +3,7 @@
 
 Welcome to ARMED & AIMED (AxMED): Automatic Random/Intelligent Malware Modifications to Evade Detection 
 
-AxMED was designed to understand how automatically injected perturbations to Windows portable executable (PE) malware impact static classifiers without affecting the sample's functionality and thus keeping the new malicious mutations valid. This work implements the action space and GBDT model proposed on the [OpenAI gym malware](https://github.com/endgameinc/gym-malware) environment. This work has been originally implemented using Fedora 29/30 and tested on Ubuntu 16.
+AxMED was designed to understand how automatically injected perturbations to Windows portable executable (PE) malware impact static classifiers without affecting the sample's functionality and thus keeping the new malicious mutations valid. This work implements the action space and GBDT model proposed on the [OpenAI gym malware](https://github.com/endgameinc/gym-malware) environment. It has been originally implemented using Fedora 29/30 and tested on Ubuntu 16.
 
 ## Part 1: Installation instructions 
 
@@ -79,8 +79,9 @@ For AIMED:
 ```
 @inproceedings{labaca-castro2019aimed,
   title={AIMED: Evolving Malware with Genetic Programming to Evade Detection},
-  author={Labaca Castro, Raphael and Schmitt, Corinna and Rodosek, Gabi Dreo},
-  booktitle={2019 18th IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)},
+  author={Castro, Raphael Labaca and Schmitt, Corinna and Dreo, Gabi},
+  booktitle={2019 18th IEEE International Conference On Trust, Security And Privacy In Computing And Communications/13th IEEE International Conference On Big Data Science And Engineering (TrustCom/BigDataSE)},
+  pages={240--247},
   year={2019},
   organization={IEEE}
 }

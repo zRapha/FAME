@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 '''
 Welcome to ARMED & AIMED: Automatic Random/Intelligent Malware Modifications to Evade Detection. 
-These were designed to understand how injecting random perturbations to Windows 
+AxMED were designed to understand how injecting random perturbations to Windows 
 portable executable malware impact static classifiers without affecting the sample's 
-functionality and thus keeping the new mutations valid. 
+functionality and thus keeping the new malware files valid. 
 
-ARMED: https://ieeexplore.ieee.org/abstract/document/8714698/ 
-AIMED:  
+AIMED: https://ieeexplore.ieee.org/document/8887384 
+ARMED: https://ieeexplore.ieee.org/document/8714698
 '''
 
 import os
@@ -29,8 +29,6 @@ def main(option, scanner):
 
     # Argument parsing & displaying __doc__
 	parser = ArgumentParser(description=__doc__)
-	parser.add_argument("-s", dest="myFilenameVariable", required=False,
-                        help="malware sample as input", metavar="sample")
 	parser.add_argument("-p", dest="myFilenameVariable", required=True,
                         help="number of perturbations to inject", metavar="perturbations")
 	parser.add_argument("-r", dest="myFilenameVariable", required=False,
@@ -75,5 +73,5 @@ def main(option, scanner):
 		
 if __name__ == '__main__':
 	scanner = 'GradientBoosting'
-	main('AIMED', scanner)
+	main('ARMED', scanner)
 		

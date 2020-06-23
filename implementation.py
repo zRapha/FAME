@@ -31,23 +31,24 @@ def handling_input(args):
 		Handle input entered on terminal when calling AXMED
 	'''
 	files_expected = detection_threshold = -1
-	rounds = 1
+	rounds = files_expected**3 if files_expected > 9 else 100
+	sample = unzipped_path+choice(os.listdir(unzipped_path)) # random
 	if len(args) <= 6:
-		# if sample not given select one randomly from path
-		sample = unzipped_path+choice(os.listdir(unzipped_path))	
 		print('\nSelect random malware sample: \n{}'.format(sample))
 		n = int(args[2])	
 		files_expected = int(args[4])
 	elif len(args) > 6:  
-		sample = args[2]
-		n = int(args[4])
-		if args[5] == '-r': 
-			rounds = int(args[6])
-		elif args[5] == '-m': 
-			files_expected = int(args[6])
-			rounds = files_expected**3 if files_expected > 9 else 100
-		elif args[5] == '-t': 
-			detection_threshold = int(args[6])
+		n = int(args[2])
+		if args[3] == '-r': 
+			rounds = int(args[4])
+		elif args[3] == '-m': 
+			files_expected = int(args[4])
+			if args[5] == '-r':
+				rounds = int(args[6])
+			else:
+				rounds = files_expected**3 if files_expected > 9 else 100
+		elif args[7] == '-t': 
+			detection_threshold = int(args[8])
 			rounds = 100
 		if len(args) > 8: 
 			if args[7] == '-m' and not args[5] == '-m': 
@@ -131,7 +132,7 @@ def armed(bin_bytes, sample, n, rounds, files_expected, detection_threshold, sca
 			
             # Create a dict with all perturbations & choose random actions 
 			actions = f.actions_vector(m.ACTION_TABLE.keys())
-			chosen_actions = f.create_random_actions(actions, n)
+			chosen_actions = f.create_random_actions(len(actions), n)
 
             # Call a recursive function to inject n perturbations on a given sample
 			print('\n### ARMED: Automatic Random Malware Modifications to Evade Detection ###\n')
@@ -155,8 +156,10 @@ def armed(bin_bytes, sample, n, rounds, files_expected, detection_threshold, sca
 			mod_sample_hash = f.hash_files(mod_sample)
 
             # Get VT detections for original sample to use as benchmark
-			sample_report = f.get_report_VT(hash_sample, rescan=False)
-			#sample_report = {'positives': 49, 'total': 66} # Debug mode (without VT/offline)
+			if useVT:
+			    sample_report = f.get_report_VT(hash_sample, rescan=False)
+			else:
+			    sample_report = {'positives': 49, 'total': 66} # Debug mode (without VT/offline)
             
             # Collect info to writeCSV function 
 			CSV = f.collect_info_CSV(sample, sample_report, n-1, chosen_actions, mod_sample_hash, hash_sample)
@@ -213,14 +216,18 @@ def armed2(bin_bytes, sample, n, rounds, files_expected, scanner):
 			files_expected: number of malware mutations expected as output
 			scanner: commercial AV or malware model classifier 
 	'''
+	# Decide whether to use remote (VirusTotal) or local detection
+	useVT = False
 	
 	# Create a dict with all perturbations
 	actions = f.actions_vector(m.ACTION_TABLE.keys())
 	
 	# Get VT detections for original sample to use as benchmark
 	hash_sample = f.hash_files(sample)
-	sample_report = f.get_report_VT(hash_sample, rescan=False)
-	#sample_report = {'positives': 49, 'total': 66} # Debug mode (without VT/offline)
+	if useVT:
+		sample_report = f.get_report_VT(hash_sample, rescan=False)
+	else:
+		sample_report = {'positives': 49, 'total': 66} # Debug mode (without VT/offline)
 	
 	# Inject perturbations and check for detection 
 	chosen_actions = [None]*n
@@ -230,7 +237,7 @@ def armed2(bin_bytes, sample, n, rounds, files_expected, scanner):
 		for r in range(rounds): 	
 			
 			# Create random action and add it to sequence 
-			random_actions = f.create_random_actions(actions, x+1)
+			random_actions = f.create_random_actions(len(actions), x+1)
 			chosen_actions[x] = random_actions[0]
 			
 			print('\n### ARMED-II: Automatic Random Malware Modifications to Evade Detection ###\n')

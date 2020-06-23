@@ -1,4 +1,4 @@
-import lief  # pip install https://github.com/lief-project/LIEF/releases/download/0.7.0/linux_lief-0.7.0_py3.6.tar.gz
+import lief  # pip install lief==0.9.0
 import json
 import os
 import sys
@@ -50,7 +50,7 @@ class MalwareManipulator(object):
         random.seed(seed)
         L = self.__random_length()
         # choose the upper bound for a uniform distribution in [0,upper]
-        upper = random.randrange(128) # it was 256
+        upper = random.randrange(256) 
         # upper chooses the upper bound on uniform distribution:
         # upper=0 would append with all 0s
         # upper=126 would append with "printable ascii"
@@ -60,7 +60,7 @@ class MalwareManipulator(object):
     def imports_append(self, seed=None):
         # add (unused) imports
         random.seed(seed)
-        binary = lief.PE.parse(self.bytez)
+        binary = lief.PE.parse(list(self.bytez))
         # draw a library at random
         libname = random.choice(list(COMMON_IMPORTS.keys()))
         funcname = random.choice(list(COMMON_IMPORTS[libname]))
@@ -86,7 +86,7 @@ class MalwareManipulator(object):
     def section_rename(self, seed=None):
         # rename a random section
         random.seed(seed)
-        binary = lief.PE.parse(self.bytez)
+        binary = lief.PE.parse(list(self.bytez))
         targeted_section = random.choice(binary.sections)
         targeted_section.name = random.choice(COMMON_SECTION_NAMES)[:7] #actual version of lief not allowing 8 chars?
 
@@ -96,12 +96,12 @@ class MalwareManipulator(object):
 
     def section_add(self, seed=None):
         random.seed(seed)
-        binary = lief.PE.parse(self.bytez)
+        binary = lief.PE.parse(list(self.bytez))
         new_section = lief.PE.Section(
             "".join(chr(random.randrange(ord('.'), ord('z'))) for _ in range(6)))
 
         # fill with random content
-        upper = random.randrange(128) # it was 256
+        upper = random.randrange(256)
         L = self.__random_length()
         new_section.content = [random.randint(0, upper) for _ in range(L)]
 
@@ -128,14 +128,14 @@ class MalwareManipulator(object):
     def section_append(self, seed=None):
         # append to a section (changes size and entropy)
         random.seed(seed)
-        binary = lief.PE.parse(self.bytez)
+        binary = lief.PE.parse(list(self.bytez))
         targeted_section = random.choice(binary.sections)
         L = self.__random_length()
         available_size = targeted_section.size - len(targeted_section.content)
         if L > available_size:
             L = available_size
 
-        upper = random.randrange(128) # it was 256
+        upper = random.randrange(256)
         targeted_section.content = targeted_section.content + \
             [random.randint(0, upper) for _ in range(L)]
 
@@ -151,7 +151,7 @@ class MalwareManipulator(object):
         # DRAFT: this may have a few technical issues with it (not accounting for relocations), but is a proof of concept for functionality
         random.seed(seed)
 
-        binary = lief.PE.parse(self.bytez)
+        binary = lief.PE.parse(list(self.bytez))
 
         # get entry point
         entry_point = binary.optional_header.addressof_entrypoint
@@ -244,7 +244,7 @@ class MalwareManipulator(object):
 
     def remove_signature(self, seed=None):
         random.seed(seed)
-        binary = lief.PE.parse(self.bytez)
+        binary = lief.PE.parse(list(self.bytez))
 
         if binary.has_signature:
             for i, e in enumerate(binary.data_directories):
@@ -261,7 +261,7 @@ class MalwareManipulator(object):
 
     def remove_debug(self, seed=None):
         random.seed(seed)
-        binary = lief.PE.parse(self.bytez)
+        binary = lief.PE.parse(list(self.bytez))
 
         if binary.has_debug:
             for i, e in enumerate(binary.data_directories):
@@ -277,7 +277,7 @@ class MalwareManipulator(object):
         return self.bytez
 
     def break_optional_header_checksum(self, seed=None):
-        binary = lief.PE.parse(self.bytez)
+        binary = lief.PE.parse(list(self.bytez))
         binary.optional_header.checksum = 0
         self.bytez = self.__binary_to_bytez(binary)
         return self.bytez
@@ -285,11 +285,11 @@ class MalwareManipulator(object):
 # List of actions
 ACTION_TABLE = {
     'overlay_append': 'overlay_append', # safe
-#    'imports_append': 'imports_append', # often returns can't patch
+    'imports_append': 'imports_append', # safe
     'section_rename': 'section_rename', # safe
     'section_add': 'section_add',	# safe
     'section_append': 'section_append', # safe
-#    'create_new_entry': 'create_new_entry', # many samples do not run for entry point errors
+#   'create_new_entry': 'create_new_entry', # many samples do not run for entry point errors
     'remove_signature': 'remove_signature', # safe
     'remove_debug': 'remove_debug', 	# safe
     'upx_pack': 'upx_pack',		# safe
