@@ -79,7 +79,7 @@ For AIMED:
 ```
 @inproceedings{labaca-castro2019aimed,
   title={AIMED: Evolving Malware with Genetic Programming to Evade Detection},
-  author={Castro, Raphael Labaca and Schmitt, Corinna and Dreo, Gabi},
+  author={Labaca-Castro, Raphael and Schmitt, Corinna and Dreo, Gabi},
   booktitle={2019 18th IEEE International Conference On Trust, Security And Privacy In Computing And Communications/13th IEEE International Conference On Big Data Science And Engineering (TrustCom/BigDataSE)},
   pages={240--247},
   year={2019},
@@ -91,7 +91,7 @@ For ARMED:
 ```
 @inproceedings{labaca-castro2019armed,
   title={ARMED: How Automatic Malware Modifications Can Evade Static Detection?},
-  author={Labaca Castro, Raphael and Schmitt, Corinna and Rodosek, Gabi Dreo},
+  author={Labaca-Castro, Raphael and Schmitt, Corinna and Rodosek, Gabi Dreo},
   booktitle={2019 5th International Conference on Information Management (ICIM)},
   pages={20--27},
   year={2019},
