@@ -68,9 +68,9 @@ $ cuckoo web
 $ cuckoo api 
 $ cuckoo
 ```
-5. Run AxMED: 
+5. Run AxMED to find m adversarial examples by injecting p perturbations: 
 ```
-$ ./axmed.py -s samples/keylogger -p 5
+$ ./axmed.py -p 5 -m 1
 ```
 
 ## Citation  
