@@ -1,7 +1,7 @@
-# ARMED & AIMED 
-***************
+# ARMED & AIMED & AIMED-RL
+**************************
 
-Welcome to ARMED & AIMED (AxMED): Automatic Random/Intelligent Malware Modifications to Evade Detection 
+Welcome to ARMED & AIMED/RL (AxMED): Automatic Random/Intelligent Malware Modifications to Evade Detection 
 
 AxMED was designed to understand how automatically injected perturbations to Windows portable executable (PE) malware impact static classifiers without affecting the sample's functionality and thus keeping the new malicious mutations valid. This work implements the action space and GBDT model proposed on the [OpenAI gym malware](https://github.com/endgameinc/gym-malware) environment. It has been originally implemented using Fedora 29/30 and tested on Ubuntu 16.
 
@@ -73,13 +73,27 @@ $ cuckoo
 $ ./axmed.py -p 5 -m 1
 ```
 
+Observation: Note that an early working version of the AIMED-RL module has been provided along with the paper publication. However, a new and more adjusted release is expected around Q12022. 
+
 ## Citation  
+
+For AIMED-RL: 
+```
+@inproceedings{labaca-castro2019aimed-rl,
+  title={AIMED-RL: Exploring Adversarial Malware Examples with Reinforcement Learning },
+  author={Labaca-Castro, Raphael and Franz, Sebastian and Rodosek, Gabi Dreo},
+  booktitle={European Conference on Machine Learning and Knowledge Discovery in Databases (ECML PKDD)},
+  pages={1--x},
+  year={2021},
+  organization={Springer}
+}
+```
 
 For AIMED: 
 ```
 @inproceedings{labaca-castro2019aimed,
   title={AIMED: Evolving Malware with Genetic Programming to Evade Detection},
-  author={Labaca-Castro, Raphael and Schmitt, Corinna and Dreo, Gabi},
+  author={Labaca-Castro, Raphael and Schmitt, Corinna and Rodosek, Gabi Dreo},
   booktitle={2019 18th IEEE International Conference On Trust, Security And Privacy In Computing And Communications/13th IEEE International Conference On Big Data Science And Engineering (TrustCom/BigDataSE)},
   pages={240--247},
   year={2019},

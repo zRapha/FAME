@@ -1,5 +1,6 @@
 import os
 import gp
+import rl 
 import json
 import requests
 import functions as f
@@ -17,6 +18,7 @@ fail_path = "samples/unsuccessful/"
 evasion_path = "samples/successful/"
 detected_path = "samples/successful/detected/"
 unzipped_path = "samples/unzipped/"
+evaluation_path = "samples/evaluate_set/"
 
 # Default fields for database
 fields = ['Original_File', 'OF_Detections', 'Manipulated_File', 'MF_Detections', 'Perturbations', 'Perturbations_Injected',
@@ -30,6 +32,7 @@ def handling_input(args):
 	'''
 		Handle input entered on terminal when calling AXMED
 	'''
+	n=0
 	files_expected = detection_threshold = -1
 	rounds = files_expected**3 if files_expected > 9 else 100
 	sample = unzipped_path+choice(os.listdir(unzipped_path)) # random
@@ -278,6 +281,49 @@ def armed2(bin_bytes, sample, n, rounds, files_expected, scanner):
 	# Show time	
 	print('Evasive mutations found: {}'.format(new_mutations))	
 	
+def aimed_rl(base_directory=None, train=True, evaluate=True):
+	"""
+		AIMED-RL: Automatic Intelligent Malware Modifications using Reinforcement Learning
+		base_directory: Training Directory of an existing agent (evaluation only)
+		train: Creates and trains a new agent
+		evaluate:Evaluates an existing agent
+		(either train or eval or both must be true)
+	"""
+	assert train or evaluate, "AIMED-RL must either train or evaluate or both"
+	# Train:
+	if train:
+		assert base_directory is None, "AIMED-Rl training does not require a directory"
+		print("AIMED-RL TRAINING Started!")
+		base_directory = rl.train_and_save_agent(malware_detection=malware_detection,
+												 malware_analysis=malware_analysis)
+
+	# Evaluate
+	if evaluate:
+		assert base_directory is not None, "AIMED-RL evaluation needs a base directory"
+		if not base_directory[-1] == "/":
+			base_directory += "/"
+
+		print("Starting evaluation for " + base_directory)
+
+		directory_agent = base_directory + "agent/"
+		assert os.path.exists(directory_agent), "Agent directory not found"
+
+		files = os.listdir(base_directory)
+		training_report = None
+		for file in files:
+			if "training_report" in file:
+				training_report = file
+				break
+		assert training_report is not None, "Training information not found"
+		agent_information = base_directory + training_report
+
+		print("AIMED-RL EVALUATION Started!")
+		rl.load_and_evaluate_agent(directory_agent=directory_agent,
+								   agent_information=agent_information,
+								   evaluation_set_directory=EVALUATION_PATH,
+								   malware_detection=malware_detection,
+								   malware_analysis=malware_analysis)
+
 	
 #				COMPARING ARMED vs AIMED 
 
@@ -649,7 +695,7 @@ def malware_detection_MD(sample):
 #				MALWARE DETECTION STAGE (LOCAL)
 
 
-def malware_detection(mutation, snapshot):
+def malware_detection(mutation, snapshot, threshold=0.9):
 	''' 
 		Detecting malware samples using local scanners.
 		Use malware classifiers from industry or academia: 
@@ -674,7 +720,7 @@ def malware_detection(mutation, snapshot):
 		av_model = f.load_av('data/gradient_boosting.pkl')		
 		bin_bytes = f.readfile(mod_path+mutation) 
 		score = f.get_score_local(bin_bytes, av_model)	
-		if score > 0.9: # As per paper
+		if score > threshold: # As per paper
 			print('\nMalware detected.\n') 
 			return True
 		else: 

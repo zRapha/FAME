@@ -37,6 +37,12 @@ def main(option, scanner):
                         help="number of manipulated files expected", metavar="mutations exp.")
 	parser.add_argument("-t", dest="myFilenameVariable", required=False,
                         help="run until detections are below threshold", metavar="detection thresh.")
+    parser.add_argument("-dir", dest="directory", required=False,
+						help="base directory for AIMED-RL agent data", metavar="directory")
+	parser.add_argument("--train", dest="train", required=False, const=True,
+						help="AIMED-RL training", metavar="train", nargs="?", type=f.str2bool, default=False)
+	parser.add_argument("--eval", dest="eval", required=False, const=True,
+						help="AIMED-RL evaluation", metavar="eval", nargs="?", type=f.str2bool, default=False)
 	args = parser.parse_args()
 
 	# Processing input from terminal
@@ -63,7 +69,11 @@ def main(option, scanner):
 		start_AIMED = time()
 		i.aimed(bin_bytes, sample, size_population, n, files_expected, scanner) 
 		f.time_me(start_AIMED)		
-		
+	
+	# AIMED-RL: Optimized order of perturbations with Reinforcement Learning
+	elif option == 'AIMED-RL':
+		i.aimed_rl(args.directory, args.train, args.eval)
+
 	# COMPARE: Examine intelligent evolutionary algorithm against random (AIMED vs ARMED) 
 	elif option == 'COMPARE': 
 		start_COMPARE = time()

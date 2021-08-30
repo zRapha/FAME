@@ -11,6 +11,7 @@ from shutil import copyfile
 import data.manipulate as m
 from time import time, strptime
 from sklearn.externals import joblib 
+from argparse import ArgumentTypeError
 from datetime import datetime, timedelta 
 from data.pefeatures import PEFeatureExtractor
 
@@ -42,7 +43,7 @@ def readfile(filename):
 		b_bytes = b.read()
 	return b_bytes
 
-def unzip_file(zipped_path):
+def unzip_file(zipped_path, unzipped_path):
 	'''
 		Unzip downloaded malware with standard industry password
 	'''
@@ -516,3 +517,16 @@ def get_score_local(bytez, local_model):
 	# Get malicious score from a single sample
 	score = local_model.predict_proba(features.reshape(1,-1))[0,-1] 
 	return score
+
+def str2bool(v):
+	"""
+	Required for parsing --flags from command line
+	"""
+	if isinstance(v, bool):
+		return v
+	if v.lower() in ('yes', 'true', 't', 'y', '1'):
+		return True
+	elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+		return False
+	else:
+		raise ArgumentTypeError('Boolean value expected.')
