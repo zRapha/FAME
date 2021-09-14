@@ -79,11 +79,11 @@ Observation: Note that an early working version of the AIMED-RL module has been 
 
 For AIMED-RL: 
 ```
-@inproceedings{labaca-castro2019aimed-rl,
+@inproceedings{labaca-castro2021aimed-rl,
   title={AIMED-RL: Exploring Adversarial Malware Examples with Reinforcement Learning },
   author={Labaca-Castro, Raphael and Franz, Sebastian and Rodosek, Gabi Dreo},
-  booktitle={European Conference on Machine Learning and Knowledge Discovery in Databases (ECML PKDD)},
-  pages={1--x},
+  booktitle={Joint European Conference on Machine Learning and Knowledge Discovery in Databases (ECML PKDD)},
+  pages={37--52},
   year={2021},
   organization={Springer}
 }
