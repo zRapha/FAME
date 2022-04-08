@@ -73,7 +73,7 @@ $ cuckoo
 $ ./axmed.py -p 5 -m 1
 ```
 
-Observation: Note that an early working version of the AIMED-RL module has been provided along with the paper publication. However, a new and more adjusted release is expected around Q12022. 
+Observation: Note that an early working version of the AIMED-RL module has been provided along with the paper publication. However, a new and more adjusted release is expected around Q22022. 
 
 ## Citation  
 
