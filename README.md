@@ -145,7 +145,7 @@ If you worked with more specific modules feel free to reference them separately:
 
 `GAME-UP`
 ```
-@article{labaca-castro2021universal,
+@article{labaca-castro2022universal,
   title={Realizable Universal Adversarial Perturbations for Malware},
   author={Labaca-Castro, Raphael and Mu{\~n}oz-Gonz{\'a}lez, Luis and Pendlebury, Feargus and Rodosek, Gabi Dreo and Pierazzi, Fabio and Cavallaro, Lorenzo},
   journal={arXiv preprint arXiv:2102.06747},
