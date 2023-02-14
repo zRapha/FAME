@@ -9,27 +9,27 @@
 [![PyPI version](https://badge.fury.io/py/ttkwidgets.svg)](https://badge.fury.io/py/ttkwidgets)
 -->
 
-Welcome to the Framework for Adversarial Malware Evaluation (FAME)
+## Welcome to the Framework for Adversarial Malware Evaluation 
 
-FAME was designed to understand how byte-level transformations could automatically be injected to Windows Portable Executable (PE) files and compromise ML-based malware classifiers. Moreover, it supports integrity verification to ensure that the new adversarial examples are valid. This work implements the action space proposed on the [OpenAI gym malware](https://github.com/endgameinc/gym-malware) environment. It has been implemented in Fedora 30 and tested on Ubuntu 16 using Python3. Library versions are defined in requirements.txt file.
+FAME has been designed to evaluate ML-based malware classifiers against adversarial examples. It aims to provide understanding on how byte-level transformations can be injected into Windows Portable Executable (PE) files and compromise models. Moreover, it supports integrity verification to ensure that the adversarial examples remain valid after manipulation. This work implements the action space proposed on the [OpenAI gym malware](https://github.com/endgameinc/gym-malware) environment. It has been implemented and tested using Fedora 30 and Ubuntu 16 with Python3. Library versions are defined in the requirements.txt file.
 
 > FAME: Framework for Adversarial Malware Evaluation, Labaca-Castro et al., 2022
 
 The framework consists of four modules, namely, ARMED, AIMED, AIMED-RL & GAME-UP, which are described below:
 
-GAME-UP: Generating Adversarial Malware Examples with Universal Perturbations
+### GAME-UP: Generating Adversarial Malware Examples with Universal Perturbations
 
 This work intends to understand how Universal Adversarial Perturbations (UAPs) can be useful to create efficient adversarial examples compared to input-specific attacks. Furthermore, it explores how real malware examples in the problem-space affect the feature-space of classifiers to identify systematic weaknesses. Also, it implements a variant of adversarial training to improve the resilience of static ML-based malware classifiers for Windows PE binaries.
 
 > Realizable Universal Adversarial Perturbations, Labaca-Castro et. al., 2022
 
-AxMED: Automatic (Random|Intelligent) Malware Modifications to Evade Detection
+### AIMED: Automatic Intelligent Modifications to Evade Detection
 
 This work is focused on understanding how sensitive static malware classifiers are to adversarial examples. It uses different techniques including Genetic Programming (GP) and Reinforcement Learning (RL) to inject perturbations to Windows portable executable malware without compromising its functionality and, thus, keeping the new generated adversarial example valid.
 
 > AIMED-RL: Exploring Adversarial Malware Examples with Reinforcement Learning., Labaca-Castro et al., ECML PKDD 2021  
 > AIMED: Evolving Malware with Genetic Programming to Evade Detection, Labaca-Castro et al., IEEE TRUSTCOM 2019  
-> ARMED: Automatic Random Modifications to Evade Detection, Labaca-Castro et al., IEEE ICIM 2018  
+> ARMED: Automatic Random Malware Modifications to Evade Detection, Labaca-Castro et al., IEEE ICIM 2018  
 
 ## Installation instructions
 
@@ -42,6 +42,11 @@ Create a virtual environment & activate it:
 $ python3.7 -m venv fame-env
 $ source fame-env/bin/activate
 ```
+Update pip if needed (pip~=20.0):
+```
+$ pip install --upgrade pip
+```
+
 Install required packages:
 ```
 $ pip install -r requirements.txt
@@ -118,7 +123,9 @@ A workaround is curating the dataset by identifying the PE file and excluding it
 We appreciate the contributions that have been helping improve this work. Below we list authors and modules they
 contributed to: 
 
-Sebastian Franz, Technische Universität München: Reinforcement Learning  
+| Contributor     | University                     | Module                 |
+|-----------------|--------------------------------|------------------------|
+| Sebastian Franz | Technische Universität München | Reinforcement Learning |
 
 ## Citation  
 
@@ -139,7 +146,7 @@ If you worked with more specific modules feel free to reference them separately:
 `GAME-UP`
 ```
 @article{labaca-castro2021universal,
-  title={Universal Adversarial Perturbations for Malware},
+  title={Realizable Universal Adversarial Perturbations for Malware},
   author={Labaca-Castro, Raphael and Mu{\~n}oz-Gonz{\'a}lez, Luis and Pendlebury, Feargus and Rodosek, Gabi Dreo and Pierazzi, Fabio and Cavallaro, Lorenzo},
   journal={arXiv preprint arXiv:2102.06747},
   year={2022}

@@ -17,12 +17,13 @@ adversarial examples compared to input-specific attacks. Furthermore, it explore
 problem-space affect the feature-space of classifiers to identify systematic weaknesses. Also, it implements a variant
 of adversarial training to improve the resilience of static ML-based malware classifiers for Windows PE binaries.
 
-AxMED: Automatic (Random|Intelligent) Malware Modifications to Evade Detection
+AIMED-RL: Automatic Intelligent Modifications to Evade Detection (with Reinforcement Learning)
 
 This work is focused on understanding how sensitive static malware classifiers are to adversarial examples. It uses
-#different techniques including Genetic Programming (GP) and Reinforcement Learning (RL) to inject perturbations to
+different techniques including Genetic Programming (GP) and Reinforcement Learning (RL) to inject perturbations to
 Windows portable executable malware without compromising its functionality and, thus, keeping the new generated
 adversarial example valid.
+
 """
 
 import sys
