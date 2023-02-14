@@ -27,7 +27,10 @@ This approach focus on understanding how sensitive static malware classifiers ar
 
 With this option sequences of transformations are chosen randomly to identify weakspots in the classifier. This module implements a pipeline that is able to automatically generate realizable adversarial examples in the malware context. 
 
-## Installation instructions
+To use `FAME` you can either clone the project and follow instructions from source or just download and directly install the pacakage. 
+
+
+## Installation instructions (source)
 
 Clone the FAME repository:
 ```
@@ -103,9 +106,24 @@ $ cuckoo
 $ vi config.ini
 ```
 
-### 6. Run FAME with the desired module (e.g., AIMED):
+### 6. Run FAME:
 ```
 $ ./main.py aimed
+```
+
+## Installation instructions (package)
+
+Download the `tar.gz` package: 
+```
+$ tar -xvf dist/FAME-0.1.0.tar.gz
+```
+Install `FAME`:
+```
+$ pip install -e FAME-0.1.0
+```
+Run `FAME` with any module (e.g., AIMED):
+```
+$ fame aimed
 ```
 
 ## Segmentation fault 

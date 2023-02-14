@@ -33,8 +33,8 @@ import functions as f
 import implementation as i
 
 
-def main(option):
-	option = option.upper()
+def main(argv=sys.argv[1]):
+	option = argv.upper()
 
 	# Time algorithm
 	start = time.time()
@@ -89,4 +89,4 @@ def main(option):
 
 
 if __name__ == '__main__':
-	main(option=sys.argv[1])
+	main()
