@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'FAMEwork'
-copyright = '2021, Raphael Labaca Castro'
+project = 'FAME'
+copyright = '2022, Raphael Labaca Castro'
 author = 'Raphael Labaca Castro'
 
 
