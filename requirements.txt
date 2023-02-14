@@ -1,10 +1,20 @@
-# Requirements file to install all packages needed for AxMED: 
-# This file may be used within a Python environment using:
-# $ pip install -r requirements.txt
+# Requirements file to install all packages needed for FAME: 
+# $ python3.7 -m venv fame-env & pip install -r requirements.txt
 
-numpy==1.13.3
+numpy==1.19.0
 pandas==0.25.0
 requests==2.20.0
-scikit_learn==0.18.2
-scipy==0.19.1
-lief==0.9.0
+scikit-learn==0.21.2
+scipy== 1.5.1
+lief==0.10.1
+lightgbm==2.3.1
+joblib==1.2.0
+chainer==7.8.0
+chainerrl==0.8.0
+pytest==6.2.5
+coverage==6.0
+tqdm~=4.62.3
+sphinx==4.2.0
+
+gym~=0.19.0
+setuptools~=57.0.0
