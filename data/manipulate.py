@@ -1,4 +1,6 @@
-import lief  # pip install lief==0.9.0
+# Source: https://github.com/endgameinc/gym-malware
+
+import lief
 import json
 import os
 import sys
@@ -11,12 +13,13 @@ import functools
 import signal
 import multiprocessing
 
-module_path = os.path.split(os.path.abspath(sys.modules[__name__].__file__))[0]
+MODULE_PATH = os.path.split(os.path.abspath(sys.modules[__name__].__file__))[0]
 
 COMMON_SECTION_NAMES = open(os.path.join(
-    module_path, 'section_names.txt'), 'r').read().rstrip().split('\n')
+    MODULE_PATH, 'section_names.txt'), 'r').read().rstrip().split('\n')
+
 COMMON_IMPORTS = json.load(
-    open(os.path.join(module_path, 'small_dll_imports.json'), 'r'))
+    open(os.path.join(MODULE_PATH, 'small_dll_imports.json'), 'r'))
 
 
 class MalwareManipulator(object):
@@ -36,7 +39,7 @@ class MalwareManipulator(object):
             builder.build_imports(imports) # rebuild IAT in another section
             builder.patch_imports(imports) # patch orig. import table with trampolines to new import table
         if(overlay):
-            builder.build_overlay(overlay) # rebuild overlay        
+            builder.build_overlay(overlay) # rebuild overlay
         if(relocations):
             builder.build_relocations(relocations) # rebuild relocation table in another section
         if(resources):
@@ -44,13 +47,13 @@ class MalwareManipulator(object):
         if(tls):
             builder.build_tls(tls) # rebuilt TLS object in another section
         builder.build() # perform the build process
-        return array.array('B', builder.get_build()).tobytes() 
+        return array.array('B', builder.get_build()).tobytes()
 
     def overlay_append(self, seed=None):
         random.seed(seed)
         L = self.__random_length()
         # choose the upper bound for a uniform distribution in [0,upper]
-        upper = random.randrange(256) 
+        upper = random.randrange(256)
         # upper chooses the upper bound on uniform distribution:
         # upper=0 would append with all 0s
         # upper=126 would append with "printable ascii"
@@ -284,69 +287,15 @@ class MalwareManipulator(object):
 
 # List of actions
 ACTION_TABLE = {
-    'overlay_append': 'overlay_append', # safe
-    'imports_append': 'imports_append', # safe
-    'section_rename': 'section_rename', # safe
-    'section_add': 'section_add',	# safe
-    'section_append': 'section_append', # safe
-#   'create_new_entry': 'create_new_entry', # many samples do not run for entry point errors
-    'remove_signature': 'remove_signature', # safe
-    'remove_debug': 'remove_debug', 	# safe
-    'upx_pack': 'upx_pack',		# safe
-    'upx_unpack': 'upx_unpack',		# safe
-    'break_optional_header_checksum': 'break_optional_header_checksum' #safe
+    'overlay_append': 'overlay_append',     # 0
+    'imports_append': 'imports_append',     # 1
+    'section_rename': 'section_rename',     # 2
+    'section_add': 'section_add',           # 3
+    'section_append': 'section_append',     # 4
+    'remove_signature': 'remove_signature', # 5
+    'remove_debug': 'remove_debug',         # 6
+    'upx_pack': 'upx_pack',                 # 7
+    'upx_unpack': 'upx_unpack',             # 8
+    'break_optional_header_checksum': 'break_optional_header_checksum'  # 9
+#   'create_new_entry': 'create_new_entry', # generates often entry point errors
 }
-
-def modify_without_breaking(bytez, actions=[], seed=None):
-    for action in actions:
-
-        _action = ACTION_TABLE[action]
-
-        # we run manipulation in a child process to shelter
-        # our malware model from rare parsing errors in LIEF that
-        # may segfault or timeout
-        def helper(_action,shared_list):
-            # TODO: LIEF is chatty. redirect stdout and stderr to /dev/null
-
-            # for this process, change segfault of the child process
-            # to a RuntimeEror
-            def sig_handler(signum, frame):
-                raise RuntimeError
-            signal.signal(signal.SIGSEGV, sig_handler)
-
-            bytez = array.array('B', shared_list[:]).tobytes()
-            # TODO: LIEF is chatty. redirect output to /dev/null
-            if type(_action) is str:
-                _action = MalwareManipulator(bytez).__getattribute__(_action)
-            else:
-                _action = functools.partial( _action, bytez )
-
-            # redirect standard out only in this queue
-            try:
-                shared_list[:] = _action(seed) 
-            except (RuntimeError,UnicodeDecodeError,TypeError,lief.not_found) as e:
-                # some exceptions that have yet to be handled by public release of LIEF
-                print("==== exception in child process ===")
-                print(e)
-                # shared_bytez remains unchanged                
-
-
-        # communicate with the subprocess through a shared list
-        # can't use multiprocessing.Array since the subprocess may need to
-        # change the size
-        manager = multiprocessing.Manager()
-        shared_list = manager.list() 
-        shared_list[:] = bytez # copy bytez to shared array
-        # define process
-        p = multiprocessing.Process( target=helper, args=(_action,shared_list) ) 
-        p.start() # start the process
-        try:
-            p.join(5) # allow this to take up to 5 seconds...
-        except multiprocessing.TimeoutError: # ..then become petulant
-            print('==== timeouterror ')
-            p.terminate()
-
-        bytez = array.array('B', shared_list[:]).tobytes() # copy result from child process
-
-
-
