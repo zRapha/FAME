@@ -3,7 +3,7 @@
 ![Workflow](https://github.com/zrapha/fame/actions/workflows/main.yml/badge.svg)
 [![codecov](https://codecov.io/gh/zRapha/famework/branch/master/graph/badge.svg?token=oMFazw4iLl)](https://codecov.io/gh/zRapha/famework)
 [![License: MPL v2](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](https://www.mozilla.org/en-US/MPL/2.0/)
-[![Documentation Status](https://readthedocs.com/projects/famework-famework/badge/?version=latest&token=49ee59c4023ff442c8f2ecf706a700f8b262bc03c8fcefb29cb7effc52584998)](https://famework-famework.readthedocs-hosted.com/en/latest/?badge=latest)
+
 
 <!--
 [![PyPI version](https://badge.fury.io/py/ttkwidgets.svg)](https://badge.fury.io/py/ttkwidgets)
