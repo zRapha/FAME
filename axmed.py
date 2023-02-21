@@ -27,7 +27,7 @@ def main(option, scanner):
 	evasion_path = "samples/successful/"
 	detected_path = "samples/successful/detected/"
 
-    # Argument parsing & displaying __doc__
+    	# Argument parsing & displaying __doc__
 	parser = ArgumentParser(description=__doc__)
 	parser.add_argument("-p", dest="myFilenameVariable", required=True,
                         help="number of perturbations to inject", metavar="perturbations")
@@ -37,7 +37,7 @@ def main(option, scanner):
                         help="number of manipulated files expected", metavar="mutations exp.")
 	parser.add_argument("-t", dest="myFilenameVariable", required=False,
                         help="run until detections are below threshold", metavar="detection thresh.")
-    parser.add_argument("-dir", dest="directory", required=False,
+    	parser.add_argument("-dir", dest="directory", required=False,
 						help="base directory for AIMED-RL agent data", metavar="directory")
 	parser.add_argument("--train", dest="train", required=False, const=True,
 						help="AIMED-RL training", metavar="train", nargs="?", type=f.str2bool, default=False)
@@ -51,7 +51,7 @@ def main(option, scanner):
 	# Convert malware sample into binaries
 	bin_bytes = f.readfile(sample) 
     
-    # ARMED: Fixed length of sequence -- Using remote/local sandbox (HT/Cuckoo) + remote (VT)/local detection 
+    	# ARMED: Fixed length of sequence -- Using remote/local sandbox (HT/Cuckoo) + remote (VT)/local detection 
 	if option == 'ARMED': 
 		start_ARMED = time()
 		i.armed(bin_bytes, sample, n, rounds, files_expected, detection_threshold, scanner)
