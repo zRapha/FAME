@@ -11,25 +11,21 @@
 
 ## Welcome to the Framework for Adversarial Malware Evaluation 
 
-FAME has been designed to evaluate ML-based malware classifiers against adversarial examples. It aims to provide understanding on how byte-level transformations can be injected into Windows Portable Executable (PE) files and compromise models. Moreover, it supports integrity verification to ensure that the adversarial examples remain valid after manipulation. This work implements the action space proposed on the [OpenAI gym malware](https://github.com/endgameinc/gym-malware) environment. It has been implemented and tested using Fedora 30 and Ubuntu 16 with Python3. Library versions are defined in the requirements.txt file.
+FAME has been designed to evaluate ML-based malware classifiers against adversarial examples. It aims to provide understanding on how byte-level transformations can be injected into Windows Portable Executable (PE) files and compromise models. Moreover, it supports integrity verification to ensure that the adversarial examples remain valid after manipulation. This work implements the action space proposed on the [OpenAI gym malware](https://github.com/endgameinc/gym-malware) environment. It has been implemented and tested using Fedora 30 and Ubuntu 16 with Python3. Library versions are defined in the `requirements.txt` file.
 
-> FAME: Framework for Adversarial Malware Evaluation, Labaca-Castro et al., 2022
-
-The framework consists of four modules, namely, ARMED, AIMED, AIMED-RL & GAME-UP, which are described below:
+The framework consists of the following modules: ARMED, AIMED / AIMED-RL & GAME-UP. 
 
 ### GAME-UP: Generating Adversarial Malware Examples with Universal Perturbations
 
-This work intends to understand how Universal Adversarial Perturbations (UAPs) can be useful to create efficient adversarial examples compared to input-specific attacks. Furthermore, it explores how real malware examples in the problem-space affect the feature-space of classifiers to identify systematic weaknesses. Also, it implements a variant of adversarial training to improve the resilience of static ML-based malware classifiers for Windows PE binaries.
-
-> Realizable Universal Adversarial Perturbations, Labaca-Castro et. al., 2022
+This module intends to analyze how Universal Adversarial Perturbations (UAPs) can be useful to create efficient adversarial examples compared to input-specific attacks. It explores how real malware examples in the problem-space affect the feature-space of classifiers to identify systematic weaknesses. Also, it implements a variant of adversarial training to improve the resilience of static ML-based malware classifiers for Windows PE binaries.
 
 ### AIMED: Automatic Intelligent Modifications to Evade Detection
 
-This work is focused on understanding how sensitive static malware classifiers are to adversarial examples. It uses different techniques including Genetic Programming (GP) and Reinforcement Learning (RL) to inject perturbations to Windows portable executable malware without compromising its functionality and, thus, keeping the new generated adversarial example valid.
+This approach focus on understanding how sensitive static malware classifiers are to adversarial examples. It uses different techniques including Genetic Programming (GP) and Reinforcement Learning (RL) to inject perturbations to Windows PE malware without compromising its functionality, keeping the frehsly generated adversarial example valid.
 
-> AIMED-RL: Exploring Adversarial Malware Examples with Reinforcement Learning., Labaca-Castro et al., ECML PKDD 2021  
-> AIMED: Evolving Malware with Genetic Programming to Evade Detection, Labaca-Castro et al., IEEE TRUSTCOM 2019  
-> ARMED: Automatic Random Malware Modifications to Evade Detection, Labaca-Castro et al., IEEE ICIM 2018  
+### ARMED: Automatic Random Modifications to Evade Detection
+
+With this option sequences of transformations are chosen randomly to identify weakspots in the classifier. This module implements a pipeline that is able to automatically generate realizable adversarial examples in the malware context. 
 
 ## Installation instructions
 
@@ -116,7 +112,7 @@ $ ./main.py aimed
 We have observed that injecting some combinations of perturbations to specific PE files raise segmentation fault 
 issues. Due to the nature of memory violations and the occurrence of this issue (in our experiments less than 0.02% of 
 the cases) we recommend either adjusting the transformations' sequence to a different combination or trying a new example. 
-Sometimes not patching the original import table, setting builder.patch_imports(False), may also help prevent this issue. 
+Sometimes not patching the original import table, setting `builder.patch_imports(False)`, may also help prevent this issue. 
 A workaround is curating the dataset by identifying the PE file and excluding it from the process.
 
 ## Contributors 
