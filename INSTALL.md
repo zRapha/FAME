@@ -1,4 +1,4 @@
-# Installation instructions (source)
+# Installation instructions from source
 
 Clone the FAME repository:
 ```
