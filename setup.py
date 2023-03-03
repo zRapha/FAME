@@ -7,7 +7,7 @@ def read_file(filename):
 
 setup(
     name='FAMEwork',
-    version='0.1.4',
+    version='0.1.5',
     use_scm_version=False,
     setup_requires=['setuptools_scm'],
     include_package_data=True,
@@ -34,7 +34,7 @@ setup(
     author='Raphael Labaca Castro',
     author_email='mail@rapha.ai',
     description='Framework for Adversarial Malware Evaluation', 
-    long_description=read_file('README.md'), 
+    long_description=read_file('PyPI.md'), 
     long_description_content_type='text/markdown', 
     platforms=['Fedora 30, Ubuntu 16'], 
     entry_points={'console_scripts': ['fame = main:main',]}
