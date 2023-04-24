@@ -2,7 +2,7 @@
 
 Clone the FAME repository:
 ```
-git clone https://github.com/zRapha/FAME
+git clone git@github.com:zRapha/FAME.git
 ```
 Create a virtual environment & activate it:
 ```
