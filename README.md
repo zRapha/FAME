@@ -33,11 +33,11 @@ Here we describe how to run `FAME` by installing directly the package from `pip`
 
 Install `FAME`:
 ```
-$ pip install famework
+pip install famework
 ```
 Run `FAME` with any module (e.g., AIMED):
 ```
-$ fame aimed
+fame aimed
 ```
 
 ## Contributors 

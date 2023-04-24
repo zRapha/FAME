@@ -2,21 +2,21 @@
 
 Clone the FAME repository:
 ```
-$ git clone https://github.com/zRapha/FAME
+git clone https://github.com/zRapha/FAME
 ```
 Create a virtual environment & activate it:
 ```
-$ python3.7 -m venv fame-env
-$ source fame-env/bin/activate
+python3.7 -m venv fame-env
+source fame-env/bin/activate
 ```
 Update pip if needed (pip~=20.0):
 ```
-$ pip install --upgrade pip
+pip install pip===20.0.4
 ```
 
 Install required packages:
 ```
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 ## Integrity test verification  
 Per default the functionality stage is implemented using Cuckoo, an analysis environment that has an extensive documentation support: https://cuckoo.sh/docs/. Cuckoo provides dynamic analysis results, which can be useful to understand the adversarial examples generated. A local beta-test implementation is also provided for further extension.
