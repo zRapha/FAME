@@ -41,8 +41,8 @@ $ fame aimed
 ```
 
 ## Contributors 
-We appreciate the contributions that have been helping improve this work. Below we list authors and modules they
-contributed to: 
+
+We appreciate the contributions that helped to improve this work: 
 
 | Contributor     | University                     | Module                 |
 |-----------------|--------------------------------|------------------------|
@@ -50,15 +50,15 @@ contributed to:
 
 ## Citation  
 
-If you find this work useful you are highly encouraged to cite the following articles. For the framework, you can refer to:
+If you find this work useful you are highly encouraged to cite the following articles. For the framework, you can refer to my dissertation:
 
 `FAME`
 ```
-@article{labaca-castro2022fame,
-  title={Framework for Adversarial Malware Evaluation},
-  author={Labaca-Castro, Raphael and Rodosek, Gabi Dreo},
-  journal={TBD},
-  year={2022}
+@book{labaca-castro2023fame,
+  title={Machine Learning under Malware Attack},
+  author={Labaca-Castro, Raphael},
+  year={2023},
+  publisher={Springer Nature}
 }
 ```
 ---
