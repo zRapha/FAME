@@ -1,13 +1,13 @@
 import os
-import gp
-import rl
+import src.gp as gp
+import src.rl as rl
 import sys
 import shutil
 import random
 import requests
-import defense as d
-import config as cfg
-import functions as f
+import src.defense as d
+import src.config as cfg
+import src.functions as f
 import data.manipulate as m
 from datetime import datetime
 from subprocess import call, check_output

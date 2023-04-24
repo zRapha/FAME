@@ -13,7 +13,7 @@ import requests
 import subprocess
 import numpy as np
 import pandas as pd
-import config as cfg
+import src.config as cfg
 from hashlib import sha256
 import data.manipulate as m
 from datetime import timedelta

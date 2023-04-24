@@ -1,5 +1,5 @@
 import unittest
-import config as cfg
+import src.config as cfg
 
 
 class TestMethods(unittest.TestCase):
