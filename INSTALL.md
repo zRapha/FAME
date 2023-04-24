@@ -32,13 +32,13 @@ Even though the manipulations do not require to run any file, the integrity veri
 
 Disable interface:
 ```
-$ sudo ifconfig <network_int> down
+sudo ifconfig <network_int> down
 ```
 
 Run inetsim:
 ```
-$ cd /etc/default/inetsim-1.2.8/
-$ sudo ./inetsim
+cd /etc/default/inetsim-1.2.8/
+sudo ./inetsim
 ```
 
 Note that automatically retrieving the detection rate for a malware file from an online aggregator will no longer be functional unless adjusted manually.
@@ -47,36 +47,36 @@ Note that automatically retrieving the detection rate for a malware file from an
 
 ### 1. Activate Cuckoo Python venv:
 ```
-$ source ~/Documents/venvs/cuckoo-env/bin/activate
+source ~/Documents/venvs/cuckoo-env/bin/activate
 ```
 
 > If integrity verification is implemented proceed with _2_, otherwise jump to _5_. 
 
 ### 2. Run Mongo DB for webserver:
 ```
-$ sudo service mongod start
+sudo service mongod start
 ```
 
 ### 3. Run webserver [optional]:
 ```
-$ cd ~/.cuckoo/
-$ cuckoo web
+cd ~/.cuckoo/
+cuckoo web
 ``` 
 
 ### 4. Run API & Cuckoo sandbox:
 ```
-$ cuckoo api
-$ cuckoo
+cuckoo api
+cuckoo
 ```
 
 ### 5. Adjust configuration and initial parameters:
 ```
-$ vi config.ini
+vi config.ini
 ```
 
 ### 6. Run FAME:
 ```
-$ ./main.py aimed
+./main.py aimed
 ```
 
 ## Segmentation fault 
