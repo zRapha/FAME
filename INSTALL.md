@@ -9,9 +9,9 @@ Create a virtual environment & activate it:
 python3.7 -m venv fame-env
 source fame-env/bin/activate
 ```
-Update pip if needed (pip~=20.0):
+Update pip if needed (pip<=23.0.1):
 ```
-pip install pip===20.0.4
+python -m pip install pip==23.0.1
 ```
 
 Install required packages:
