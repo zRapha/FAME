@@ -12,10 +12,10 @@ import os
 import math
 import operator
 import numpy as np
-import config as cfg
+import src.config as cfg
 from tqdm import tqdm
-import functions as f
-import implementation as i
+import src.functions as f
+import src.implementation as i
 
 EXPLORATION_SET = cfg.file['paths']['exploration']
 

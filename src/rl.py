@@ -21,7 +21,7 @@ from chainerrl.replay_buffers import EpisodicReplayBuffer
 import gym
 from gym import spaces
 
-import functions as f
+import src.functions as f
 from collections import OrderedDict
 import data.pefeatures as pefeatures
 import os

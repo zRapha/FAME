@@ -28,9 +28,9 @@ adversarial example valid.
 
 import sys
 import time
-import config as cfg
-import functions as f
-import implementation as i
+import src.config as cfg
+import src.functions as f
+import src.implementation as i
 
 
 def main(argv=sys.argv[1]):

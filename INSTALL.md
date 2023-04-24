@@ -1,4 +1,4 @@
-# Installation instructions from source
+# Installation instructions (dev mode)
 
 Clone the FAME repository:
 ```

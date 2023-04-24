@@ -3,8 +3,8 @@ import os
 import time
 import joblib
 import numpy as np
-import config as cfg
-import functions as f
+import src.config as cfg
+import src.functions as f
 import lightgbm as lgb
 from sklearn.metrics import roc_auc_score
 from data.pefeatures import PEFeatureReader
