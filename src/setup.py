@@ -13,7 +13,7 @@ setup(
     include_package_data=True,
     packages=['.'],
     install_requires=[
-    'numpy==1.19.0',
+    'numpy==1.22.0',
     'pandas==0.25.0',
     'requests==2.28.2',
     'scikit-learn==0.21.2',
