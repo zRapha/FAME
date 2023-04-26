@@ -18,7 +18,7 @@ setup(
     'requests==2.28.2',
     'scikit-learn==0.21.2',
     'scipy== 1.5.1',
-    'lief==0.10.1',
+    'lief==0.12.2',
     'lightgbm==2.3.1',
     'joblib==1.2.0',
     'chainer==7.8.0',
