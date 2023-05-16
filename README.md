@@ -29,7 +29,7 @@ With this option sequences of transformations are chosen randomly to identify we
 
 ## How to run FAME 
 
-Here we describe how to run `FAME` by installing directly the package from `pip`. For more detail about running from source and manual configuration of parameters refer to the [install](https://github.com/zRapha/FAME/blob/master/INSTALL.md) instructions. 
+Here we describe how to run `FAME` by installing directly the package from `pip`. For more detail about running from source and manual configuration of parameters refer to the [install](https://github.com/zRapha/FAME/blob/master/Install.md) instructions. 
 
 Install `FAME`:
 ```
