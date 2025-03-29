@@ -19,7 +19,7 @@ Install required packages:
 pip install -r requirements.txt
 ```
 ## Integrity test verification  
-Per default the functionality stage is implemented using Cuckoo, an analysis environment that has an extensive [documentation](https://cuckoo.sh/docs/). Cuckoo provides dynamic analysis results, which can be useful to understand the adversarial examples generated. A local beta-test implementation is also provided for further extension.
+Per default the functionality stage is implemented using Cuckoo, an analysis environment that has an extensive [documentation](https://cuckoo.readthedocs.io/en/latest/introduction/what/). Cuckoo provides dynamic analysis results, which can be useful to understand the adversarial examples generated. A local beta-test implementation is also provided for further extension.
 
 ## Malware classification   
 Local classification models are implemented to perform detection using  pre-trained malware classifier, namely, LightGBM trained with both EMBER and SOREL datasets. For those interested in more classifiers, we provide the option of using aggregators via REST APIs in order to assess adversarial examples against a wider range of commercial engines.
